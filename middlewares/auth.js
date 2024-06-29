@@ -7,6 +7,7 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.cookies;
   console.log(token);
    if (!token) {
+     console.log("not present")
     return next(new ErrorHandler("User Not Authorized", 401));
   }
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
